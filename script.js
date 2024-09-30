@@ -114,7 +114,7 @@ function removeItemCart(name) {
 
     if (index !== -1) {
         const item = cart[index]
-        
+
         if (item.quantity > 1) {
             item.quantity -= 1
             updateCartModal()
@@ -126,38 +126,57 @@ function removeItemCart(name) {
     }
 }
 
-addressInput.addEventListener("input", function(event){
+addressInput.addEventListener("input", function (event) {
     let inputValue = event.target.value
 
     if (inputValue !== "") {
         addressInput.classList.remove("border-red-500")
-        addressInput.classList.add("hidden")
+        addressWarn.classList.add("hidden")
     }
 })
 
-checkoutBtn.addEventListener("click", function(){
+checkoutBtn.addEventListener("click", function () {
+
+    const isOpen = checkRestaurantOpen()
+    if (!isOpen) {
+        alert("O RESTAURANTE ESTÁ FECHADO, ABRIREMOS AS 17:00")
+        return
+    }
+
     if (cart.length === 0) return
-    if(addressInput.value === ""){
+
+    if (addressInput.value === "") {
         addressWarn.classList.remove("hidden")
         addressInput.classList.add("border-red-500")
         return
     }
+
+    const cartItems = cart.map((item) => {
+        return (
+            ` ${item.name} Quantidade: (${item.quantity}) Preço: ${item.price} |`
+        )
+    }).join("")
+
+    const message = encodeURIComponent(cartItems)
+    const phone = "11946467247"
+
+    window.open (`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
 })
 
-function checkRestaurantOpen(){
+function checkRestaurantOpen() {
     const date = new Date()
     const hours = date.getHours()
-    return hours >= 17  && hours < 23
+    return hours >= 17 && hours < 23
 }
 
 const spanItem = document.getElementById("data-span")
 const isOpen = checkRestaurantOpen()
 
-if(isOpen){
+if (isOpen) {
     spanItem.classList.remove("bg-red-500")
     spanItem.classList.add("bg-green-600")
 }
-else{
+else {
     spanItem.classList.remove("bg-green-600")
     spanItem.classList.add("bg-red-500")
 }
