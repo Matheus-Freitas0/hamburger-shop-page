@@ -143,3 +143,21 @@ checkoutBtn.addEventListener("click", function(){
         return
     }
 })
+
+function checkRestaurantOpen(){
+    const date = new Date()
+    const hours = date.getHours()
+    return hours >= 17  && hours < 23
+}
+
+const spanItem = document.getElementById("data-span")
+const isOpen = checkRestaurantOpen()
+
+if(isOpen){
+    spanItem.classList.remove("bg-red-500")
+    spanItem.classList.add("bg-green-600")
+}
+else{
+    spanItem.classList.remove("bg-green-600")
+    spanItem.classList.add("bg-red-500")
+}
