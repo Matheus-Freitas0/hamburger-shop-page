@@ -153,14 +153,17 @@ checkoutBtn.addEventListener("click", function () {
 
     const cartItems = cart.map((item) => {
         return (
-            ` ${item.name} Quantidade: (${item.quantity}) Preço: ${item.price} |`
+            ` ${item.name} Quantidade: (${item.quantity}) Preço: ${item.price.toFixed(2)}`
         )
     }).join("")
 
     const message = encodeURIComponent(cartItems)
     const phone = "11946467247"
 
-    window.open (`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
+    window.open (`https://wa.me/${phone}?text=${message} | Total: ${cartTotal.textContent} | Endereço: ${addressInput.value} `, "_blank")
+
+    cart = []
+    updateCartModal()
 })
 
 function checkRestaurantOpen() {
