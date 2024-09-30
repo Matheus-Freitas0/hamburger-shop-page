@@ -3,9 +3,9 @@
 
 Bem-vindo ao repositório do site **Hamburgueria Luxo**, a melhor hamburgueria da Zona Norte de São Paulo. Este projeto é uma landing page para a hamburgueria, destacando o menu de hambúrgueres e bebidas, permitindo a adição de produtos ao carrinho e a realização de pedidos.
 
-## 🖥️ Demonstração
+## 🖥️ Logo
 
-![Hamburgueria Luxo](./assets/burger-logo.jpg)
+<img src="./assets/burger-logo.jpg" alt="Hamburgueria Luxo" width="150"/>
 
 Você pode acessar a aplicação hospedada [aqui](https://hamburger-shop-page.vercel.app/).
 
