@@ -139,37 +139,47 @@ checkoutBtn.addEventListener("click", function () {
 
     const isOpen = checkRestaurantOpen()
     if (!isOpen) {
-        alert("O RESTAURANTE ESTÁ FECHADO, ABRIREMOS AS 17:00")
+        Toastify({
+            text: "Ops restaurante está fechado !!!",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #FF0000, #FF3737)",
+            },
+        }).showToast()
         return
     }
 
-    if (cart.length === 0) return
+if (cart.length === 0) return
 
-    if (addressInput.value === "") {
-        addressWarn.classList.remove("hidden")
-        addressInput.classList.add("border-red-500")
-        return
-    }
+if (addressInput.value === "") {
+    addressWarn.classList.remove("hidden")
+    addressInput.classList.add("border-red-500")
+    return
+}
 
-    const cartItems = cart.map((item) => {
-        return (
-            ` ${item.name} Quantidade: (${item.quantity}) Preço: ${item.price.toFixed(2)}`
-        )
-    }).join("")
+const cartItems = cart.map((item) => {
+    return (
+        ` ${item.name} Quantidade: (${item.quantity}) Preço: ${item.price.toFixed(2)}`
+    )
+}).join("")
 
-    const message = encodeURIComponent(cartItems)
-    const phone = "11946467247"
+const message = encodeURIComponent(cartItems)
+const phone = "11946467247"
 
-    window.open (`https://wa.me/${phone}?text=${message} | Total: ${cartTotal.textContent} | Endereço: ${addressInput.value} `, "_blank")
+window.open(`https://wa.me/${phone}?text=${message} | Total: ${cartTotal.textContent} | Endereço: ${addressInput.value} `, "_blank")
 
-    cart = []
-    updateCartModal()
+cart = []
+updateCartModal()
 })
 
 function checkRestaurantOpen() {
     const date = new Date()
     const hours = date.getHours()
-    return hours >= 17 && hours < 23
+    return hours >= 19 && hours < 23
 }
 
 const spanItem = document.getElementById("data-span")
