@@ -179,7 +179,7 @@ updateCartModal()
 function checkRestaurantOpen() {
     const date = new Date()
     const hours = date.getHours()
-    return hours >= 19 && hours < 23
+    return hours >= 17 && hours < 23
 }
 
 const spanItem = document.getElementById("data-span")
